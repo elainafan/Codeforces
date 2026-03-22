@@ -25,23 +25,14 @@ void solve() {
     rep(i, 0, n - 1) cin >> a[i];
     vl ans(n);
     rep(i, 0, n - 1) {
-        vector<pll> ma;
-        ll cur = 0, tem = 0;
+        ll ans1 = 0, ans2 = 0;
         rep(j, i + 1, n - 1) {
-            if (a[j] < a[i]) {
-                cur++;
-                ma.emplace_back(a[j] + a[i], -1);
-            } else if (a[j] > a[i]) {
-                ma.emplace_back(a[j] + a[i], 1);
-            }
+            if (a[i] > a[j])
+                ans1++;
+            else if (a[i] < a[j])
+                ans2++;
         }
-        ranges::sort(ma);
-        tem = cur;
-        for (auto& [x, y] : ma) {
-            cur += y;
-            tem = max(tem, cur);
-        }
-        cout << tem << ' ';
+        cout << max(ans1, ans2) << ' ';
     }
     cout << endl;
     return;
